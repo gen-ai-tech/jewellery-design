@@ -1105,7 +1105,7 @@ footer {
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--primary-purple);
-    border-bottom: 1px solid var(--primary-purple);
+    border-bottom: 1px solid var(--primary-puple);
     transition: var(--transition);
 }
 
