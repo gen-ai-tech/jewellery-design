@@ -28,8 +28,14 @@ html {
 }
 
 section {
+    padding: 5rem 10%;
     scroll-margin-top: 100px;
-    /* Offset for fixed header */
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 3rem 5%;
+    }
 }
 
 body {
@@ -179,7 +185,7 @@ header.scrolled {
     background: white;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
     display: none;
-    grid-template-columns: repeat(4, 1fr) 1.5fr;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     padding: 3rem;
     z-index: 1000;
@@ -264,6 +270,13 @@ header.scrolled {
     background-position: center;
 }
 
+@media (max-width: 768px) {
+    .slide {
+        padding: 0 5%;
+        text-align: center;
+    }
+}
+
 .slide::before {
     content: '';
     position: absolute;
@@ -286,7 +299,7 @@ header.scrolled {
 }
 
 .slide-content h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 8vw, 3.5rem);
     line-height: 1.1;
     margin-bottom: 1.5rem;
     font-weight: 800;
@@ -295,7 +308,7 @@ header.scrolled {
 }
 
 .slide-content p {
-    font-size: 1.3rem;
+    font-size: clamp(1rem, 4vw, 1.3rem);
     margin-bottom: 2.5rem;
     color: #000;
     max-width: 90%;
@@ -368,8 +381,8 @@ header.scrolled {
 .slide-content {
     position: relative;
     z-index: 5;
-    width: 800px;
-    flex: 0 0 800px;
+    width: 100%;
+    max-width: 800px;
 }
 
 .carousel-controls {
@@ -521,7 +534,7 @@ header.scrolled {
 }
 
 .section-title h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
     margin-bottom: 1rem;
     color: var(--primary-purple);
 }
@@ -532,7 +545,7 @@ header.scrolled {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
 }
 
@@ -601,11 +614,22 @@ header.scrolled {
     text-align: center;
 }
 
-.feature-item i {
-    font-size: 2.5rem;
-    color: var(--accent-gold);
-    margin-bottom: 1.5rem;
-    display: block;
+.bridal-feature {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    padding: 5rem 10%;
+}
+
+@media (max-width: 1024px) {
+    .bridal-feature {
+        flex-direction: column;
+        text-align: center;
+        padding: 3rem 5%;
+    }
+    .bridal-image {
+        width: 100%;
+    }
 }
 
 /* Footer */
@@ -843,21 +867,45 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
-    .logo {
-        font-size: 1.2rem;
-    }
-
+@media (max-width: 1024px) {
     .nav-menu {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--primary-purple);
+        padding: 2rem;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
 
-    .nav-icons {
-        gap: 0.8rem;
+    .nav-menu.active {
+        display: block;
     }
 
-    .slide-content h1 {
-        font-size: 2.5rem;
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .nav-menu ul li a {
+        font-size: 1rem;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin-left: 1rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .mobile-menu-btn {
+        display: none;
     }
 }
 
@@ -1105,7 +1153,7 @@ footer {
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--primary-purple);
-    border-bottom: 1px solid var(--primary-puple);
+    border-bottom: 1px solid var(--primary-purple);
     transition: var(--transition);
 }
 
